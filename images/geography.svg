@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<title>Geography</title>
+<rect width="200" height="200" fill="#2c6b6b"/>
+<circle cx="170" cy="30" r="60" fill="#ffffff" opacity=".06"/>
+<circle cx="20" cy="190" r="50" fill="#ffffff" opacity=".05"/>
+<circle cx="100" cy="90" r="46" fill="#3d8f8f" stroke="#f6f2e9" stroke-width="4"/><path d="M76 62c10 4 6 16 18 18s4 20-8 22-12 12-20 4M118 52c-4 10 8 14 14 22s-2 18 8 22M110 118c6-6 16-4 18 4" fill="none" stroke="#e6b956" stroke-width="7" stroke-linecap="round"/>
+<rect y="170" width="200" height="30" fill="#000" opacity=".18"/>
+<text x="100" y="191" font-size="15" font-family="Arial,sans-serif" font-weight="bold" text-anchor="middle" fill="#f6f2e9">Geography</text>
+</svg>

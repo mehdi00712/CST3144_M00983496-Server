@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<title>Creative Art</title>
+<rect width="200" height="200" fill="#9a4b3a"/>
+<circle cx="170" cy="30" r="60" fill="#ffffff" opacity=".06"/>
+<circle cx="20" cy="190" r="50" fill="#ffffff" opacity=".05"/>
+<path d="M100 45c-34 0-58 22-58 50 0 26 22 42 40 40 12-1 10-14 18-16 10-2 22 6 34-4 14-12 8-70-34-70z" fill="#f6f2e9"/><circle cx="74" cy="80" r="9" fill="#e6b956"/><circle cx="100" cy="66" r="9" fill="#2c5a73"/><circle cx="126" cy="80" r="9" fill="#9a4b3a"/><circle cx="80" cy="108" r="9" fill="#244d3b"/>
+<rect y="170" width="200" height="30" fill="#000" opacity=".18"/>
+<text x="100" y="191" font-size="15" font-family="Arial,sans-serif" font-weight="bold" text-anchor="middle" fill="#f6f2e9">Creative Art</text>
+</svg>
