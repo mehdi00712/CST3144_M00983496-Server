@@ -57,6 +57,44 @@ app.get("/lessons", async function(request, response) {
 });
 
 
+// GET enrolment - how many spaces of a lesson have been bought
+app.get("/enrolment/:lessonid", async function(request, response) {
+    let lessonId = parseInt(request.params.lessonid);
+
+    // the id has to be a number
+    if (isNaN(lessonId)) {
+        response.status(400).json({ error: "Lesson id must be a number" });
+        return;
+    }
+
+    try {
+        // check the lesson exists
+        let lesson = await db.collection("lessons").findOne({ id: lessonId });
+        if (!lesson) {
+            response.status(404).json({ error: "Lesson not found" });
+            return;
+        }
+
+        // get every order that has this lesson in it
+        let orders = await db.collection("orders").find({ lessonIDs: lessonId }).toArray();
+
+        // count how many times the lesson appears (an order can have it more than once)
+        let enrolment = 0;
+        for (let order of orders) {
+            for (let id of order.lessonIDs) {
+                if (id === lessonId) {
+                    enrolment++;
+                }
+            }
+        }
+
+        response.json({ lessonId: lessonId, topic: lesson.topic, enrolment: enrolment });
+    } catch (err) {
+        console.log(err);
+        response.status(500).json({ error: "Could not get enrolment" });
+    }
+});
+
 // static files - lesson images from the images folder
 var imagePath = path.resolve(__dirname, "images");
 app.use("/images", express.static(imagePath));
