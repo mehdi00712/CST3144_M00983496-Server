@@ -124,6 +124,43 @@ app.get("/search", async function(request, response) {
     }
 });
 
+// GET all teachers
+app.get("/teachers", async function(request, response) {
+    try {
+        let teachers = await db.collection("teachers").find({}).toArray();
+        response.json(teachers);
+    } catch (err) {
+        console.log(err);
+        response.status(500).json({ error: "Could not get teachers" });
+    }
+});
+
+
+// GET the lessons taught by one teacher, e.g. /teachers/2/lessons
+app.get("/teachers/:teacherid/lessons", async function(request, response) {
+    let teacherId = parseInt(request.params.teacherid);
+
+    if (isNaN(teacherId)) {
+        response.status(400).json({ error: "Teacher id must be a number" });
+        return;
+    }
+
+    try {
+        let teacher = await db.collection("teachers").findOne({ id: teacherId });
+        if (!teacher) {
+            response.status(404).json({ error: "Teacher not found" });
+            return;
+        }
+
+        // find every lesson whose id is in the teacher's lessonIDs
+        let lessons = await db.collection("lessons").find({ id: { $in: teacher.lessonIDs } }).toArray();
+        response.json(lessons);
+    } catch (err) {
+        console.log(err);
+        response.status(500).json({ error: "Could not get the teacher's lessons" });
+    }
+});
+
 // static files - lesson images from the images folder
 var imagePath = path.resolve(__dirname, "images");
 app.use("/images", express.static(imagePath));
