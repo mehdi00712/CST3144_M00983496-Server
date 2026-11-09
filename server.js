@@ -95,6 +95,30 @@ app.post("/orders", async function(request, response) {
 });
 
 
+// PUT - update any field of a lesson, e.g. { "space": 3 }
+app.put("/lessons/:_id", async function(request, response) {
+    // check the id is a valid mongodb id
+    if (!ObjectId.isValid(request.params._id)) {
+        response.status(400).json({ error: "Invalid lesson id" });
+        return;
+    }
+
+    try {
+        let collection = db.collection("lessons");
+        const query = { _id: new ObjectId(request.params._id) };
+        const updates = {
+            $set: request.body
+        };
+
+        let result = await collection.updateOne(query, updates);
+        console.log("Lesson " + request.params._id + " updated: " + JSON.stringify(request.body));
+        response.send(result);
+    } catch (err) {
+        console.log(err);
+        response.status(500).json({ error: "Could not update the lesson" });
+    }
+});
+
 // 404 for anything else (has to be last)
 app.use(function(request, response) {
     response.status(404).send("Page Not Found!");
