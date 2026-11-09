@@ -95,6 +95,35 @@ app.get("/enrolment/:lessonid", async function(request, response) {
     }
 });
 
+// GET search - searches topic, location, price and space
+// e.g. /search?q=rose
+app.get("/search", async function(request, response) {
+    let searchText = (request.query.q || "").trim().toLowerCase();
+
+    try {
+        let lessons = await db.collection("lessons").find({}).toArray();
+
+        // nothing typed, send back all the lessons
+        if (searchText === "") {
+            response.json(lessons);
+            return;
+        }
+
+        // keep the lessons where any field contains the search text
+        let results = lessons.filter(function(lesson) {
+            return String(lesson.topic).toLowerCase().includes(searchText) ||
+                String(lesson.location).toLowerCase().includes(searchText) ||
+                String(lesson.price).includes(searchText) ||
+                String(lesson.space).includes(searchText);
+        });
+
+        response.json(results);
+    } catch (err) {
+        console.log(err);
+        response.status(500).json({ error: "Could not search lessons" });
+    }
+});
+
 // static files - lesson images from the images folder
 var imagePath = path.resolve(__dirname, "images");
 app.use("/images", express.static(imagePath));
