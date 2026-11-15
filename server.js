@@ -172,6 +172,17 @@ app.use("/images", function(request, response) {
 });
 
 
+// GET all orders from the database
+app.get("/orders", async function(request, response) {
+    try {
+        let orders = await db.collection("orders").find({}).toArray();
+        response.json(orders);
+    } catch (err) {
+        console.log(err);
+        response.status(500).json({ error: "Could not get orders" });
+    }
+});
+
 // POST a new order - saves it in the orders collection
 app.post("/orders", async function(request, response) {
     var order = request.body;
