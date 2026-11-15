@@ -1,7 +1,7 @@
 {
-  "name": "learning-hub-server",
+  "name": "learn-n-learn-server",
   "version": "1.0.0",
-  "description": "Back-end server for the Learning Hub after-school lessons app (CST3144)",
+  "description": "Back-end server for the Learn n Learn after-school lessons app (CST3144)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

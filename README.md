@@ -1,6 +1,6 @@
-# Learning Hub – Server
+﻿# Learn n Learn â€“ Server
 
-Back-end for the Learning Hub after-school lessons app (CST3144 coursework), built with Node.js and Express.
+Back-end for the Learn n Learn after-school lessons app (CST3144 coursework), built with Node.js and Express.
 
 ## Run it
 
@@ -22,5 +22,5 @@ The server starts on http://localhost:3000
 
 ## Middleware
 
-- **Logger** – prints the time, method and URL of every request to the console.
-- **Static files** – serves lesson images from the `images` folder.
+- **Logger** â€“ prints the time, method and URL of every request to the console.
+- **Static files** â€“ serves lesson images from the `images` folder.

@@ -1,4 +1,4 @@
-// Learning Hub - back-end server (CST3144)
+// Learn n Learn - back-end server (CST3144)
 
 var express = require("express");
 var cors = require("cors");
